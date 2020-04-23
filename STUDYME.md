@@ -905,3 +905,66 @@ API Routes can be dynamic, just like regular pages.
 [Dynamic API Routes](https://nextjs.org/docs/api-routes/dynamic-api-routes)
 
 ## Deploying Your Next.js App
+
+### Push to GitHub
+
+On your personal GitHub account, create a new repository called `nextjs-blog`.
+
+To push to GitHub, you can run the following commands (replace `<username>` with your GitHub username):
+
+```
+git remote add origin https://github.com/<username>/nextjs-blog.git
+git push -u origin master
+```
+
+### Deploy to Vercel
+
+Create a Vercel account. Choose Continue with GitHub and go through the sign up process.  
+Once you’re signed up, import your `nextjs-blog` repository on Vercel.  
+For this you’ll need first to Install Now for GitHub. You can give access to All Repositories.
+
+When you deploy, your Next.js app will start building.  
+When it’s done, you’ll get deployment URLs.  
+Click on one of the URLs and you should see the Next.js starter page live.
+
+When you deploy your Next.js app to Vercel, the following happens by default:
+
+- Pages that use Static Generation and assets (JS, CSS, images, fonts, etc) will automatically be served from the Vercel Edge Network, which is blazingly fast.
+- Pages that use Server-Side Rendering and API routes will automatically become isolated Serverless Functions. This allows page rendering and API requests to scale infinitely.
+
+### DPS workflow: Develop, Preview, and Ship
+
+- Develop: We’ve written code in Next.js and used the Next.js development server running to take advantage of its hot reloading feature.
+- Preview: We’ve pushed changes to a branch on GitHub, and Vercel created a preview deployment that’s available via a URL. We can share this preview URL with others for feedback. In addition to doing code reviews, you can do deployment previews.
+- Ship: We’ve merged the pull request to `master` to ship to production.
+
+### Other Hosting Options
+
+Next.js can be deployed to any hosting provider that supports Node.js.
+
+If you’ve followed the instructions so far, your package.json should have build and start scripts:
+
+```
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
+```
+
+In your own hosting provider, run the `build` script once, which builds the production application in the `.next` folder.
+
+```
+npm run build
+```
+
+After building, the `start` script starts a Node.js server that supports hybrid pages, serving both statically generated and server-side rendered pages. The server also supports API Routes as well.
+
+```
+npm run start
+```
+
+You can customize the `start` script in `package.json` to accept a `PORT` parameter by updating it as:
+`"start": "next start -p $PORT"`.
